@@ -1,17 +1,17 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { FILTERS, selectVisibleTasks, setFilter } from '../redux/tasksSlice'
-import Task from './Task'
+import { useDispatch, useSelector } from "react-redux";
+import { FILTERS, selectVisibleTasks, setFilter } from "../redux/tasksSlice";
+import Task from "./Task";
 
 function ListTask() {
-  const dispatch = useDispatch()
-  const filter = useSelector((state) => state.filter)
-  const tasks = useSelector(selectVisibleTasks)
+  const dispatch = useDispatch();
+  const filter = useSelector((state) => state.filter);
+  const tasks = useSelector(selectVisibleTasks);
 
   const filterOptions = [
-    { label: 'All', value: FILTERS.ALL },
-    { label: 'Done', value: FILTERS.DONE },
-    { label: 'Not done', value: FILTERS.NOT_DONE },
-  ]
+    { label: "All", value: FILTERS.ALL },
+    { label: "Done", value: FILTERS.DONE },
+    { label: "Not done", value: FILTERS.NOT_DONE },
+  ];
 
   return (
     <section className="list-task">
@@ -20,7 +20,9 @@ function ListTask() {
           <button
             key={option.value}
             type="button"
-            className={filter === option.value ? 'filter-btn active' : 'filter-btn'}
+            className={
+              filter === option.value ? "filter-btn active" : "filter-btn"
+            }
             onClick={() => dispatch(setFilter(option.value))}
           >
             {option.label}
@@ -38,7 +40,7 @@ function ListTask() {
         </ul>
       )}
     </section>
-  )
+  );
 }
 
-export default ListTask
+export default ListTask;

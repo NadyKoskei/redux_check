@@ -1,30 +1,30 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { editTask, toggleTaskStatus } from '../redux/tasksSlice'
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { editTask, toggleTaskStatus } from "../redux/tasksSlice";
 
 function Task({ task }) {
-  const dispatch = useDispatch()
-  const [isEditing, setIsEditing] = useState(false)
-  const [draft, setDraft] = useState(task.description)
+  const dispatch = useDispatch();
+  const [isEditing, setIsEditing] = useState(false);
+  const [draft, setDraft] = useState(task.description);
 
   const handleSave = (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
-    const trimmedDraft = draft.trim()
+    const trimmedDraft = draft.trim();
 
-    if (!trimmedDraft) return
+    if (!trimmedDraft) return;
 
-    dispatch(editTask({ id: task.id, description: trimmedDraft }))
-    setIsEditing(false)
-  }
+    dispatch(editTask({ id: task.id, description: trimmedDraft }));
+    setIsEditing(false);
+  };
 
   const handleCancel = () => {
-    setDraft(task.description)
-    setIsEditing(false)
-  }
+    setDraft(task.description);
+    setIsEditing(false);
+  };
 
   return (
-    <li className={`task-item ${task.isDone ? 'completed' : ''}`}>
+    <li className={`task-item ${task.isDone ? "completed" : ""}`}>
       <div className="task-main">
         <label className="task-checkbox">
           <input
@@ -44,8 +44,14 @@ function Task({ task }) {
               autoFocus
             />
             <div className="task-actions">
-              <button type="submit" className="save-btn">Save</button>
-              <button type="button" className="secondary-btn" onClick={handleCancel}>
+              <button type="submit" className="save-btn">
+                Save
+              </button>
+              <button
+                type="button"
+                className="secondary-btn"
+                onClick={handleCancel}
+              >
                 Cancel
               </button>
             </div>
@@ -54,7 +60,11 @@ function Task({ task }) {
           <>
             <span className="task-description">{task.description}</span>
             <div className="task-actions">
-              <button type="button" className="secondary-btn" onClick={() => setIsEditing(true)}>
+              <button
+                type="button"
+                className="secondary-btn"
+                onClick={() => setIsEditing(true)}
+              >
                 Edit
               </button>
             </div>
@@ -62,7 +72,7 @@ function Task({ task }) {
         )}
       </div>
     </li>
-  )
+  );
 }
 
-export default Task
+export default Task;
